@@ -1,0 +1,48 @@
+name: TDFPS
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=1_gnu
+  - blas=1.0=openblas
+  - ca-certificates=2023.01.10=h06a4308_0
+  - certifi=2022.12.7=py37h06a4308_0
+  - fftw=3.3.9=h27cfd23_1
+  - h5py=3.7.0=py37h737f45e_0
+  - hdf5=1.10.6=h3ffc7dd_1
+  - libblas=3.9.0=16_linux64_openblas
+  - libcblas=3.9.0=16_linux64_openblas
+  - libedit=3.1.20221030=h5eee18b_0
+  - libffi=3.2.1=hf484d3e_1007
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgfortran-ng=11.2.0=h00389a5_1
+  - libgfortran5=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - liblapack=3.9.0=16_linux64_openblas
+  - libopenblas=0.3.21=h043d6bf_0
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - ncurses=6.4=h6a678d5_0
+  - numpy=1.21.6=py37h976b520_0
+  - openssl=1.0.2u=h7b6447c_0
+  - pandas=1.2.3=py37hdc94413_0
+  - pip=22.3.1=py37h06a4308_0
+  - python=3.7.0=h6e4f718_3
+  - python-dateutil=2.8.2=pyhd3eb1b0_0
+  - python_abi=3.7=2_cp37m
+  - pytz=2022.7=py37h06a4308_0
+  - readline=7.0=h7b6447c_5
+  - scipy=1.7.3=py37hf838250_2
+  - setuptools=59.8.0=py37h89c1867_1
+  - six=1.16.0=pyhd3eb1b0_1
+  - sqlite=3.33.0=h62c20be_0
+  - tk=8.6.12=h1ccaba5_0
+  - tqdm=4.64.1=py37h06a4308_0
+  - wheel=0.38.4=py37h06a4308_0
+  - xz=5.2.10=h5eee18b_1
+  - zlib=1.2.13=h5eee18b_0
+prefix: /home/qijunhai/anaconda3/envs/TDFPS
