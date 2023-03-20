@@ -63,7 +63,7 @@ def getBarcodePositonFromTrueSig(refSigFile, barcodeIndex = 1, barcodeKit = 12):
     return (position[0], position[1])
     
 def main(ONTKit = 12, threadNum = 20):
-    # 给定barcode套件，统计截取barcode的概率。
+   
     sigNum = ONTKit * 1000
     basePath = '../../data/ONTBarcode%d'%ONTKit
     # sigNum = 100
@@ -121,10 +121,6 @@ def drawFig(sigFile = '../../data/barcode12/timeSeries_0.txt'):
     plt.show()
 
 def getRandom1000SigData():
-    # 如何说明截取的barcode是对的呢？
-    # 基本思路：首先随机选取1000条纳米孔信号（长度为300左右），计算出距离矩阵，然后统计一下显著性。计算提取的barcode信号与直接生成
-    # 的barcode信号之间的距离矩阵，然后查看这个距离分布是否符合相似的标准【统计显著性】。
-    
     dirForBarcodeTest = 'randomSigForTestExtraction/'
     os.system('mkdir %s'%dirForBarcodeTest)
     baseSigPath = '../../data/ONTBarcode12/'
