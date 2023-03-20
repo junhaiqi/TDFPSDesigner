@@ -59,5 +59,7 @@ Our experiments show that TDFPS-Designer can customize barcode kits for users an
     All the data used to test the TDFPS-Designer and output files of the TDFPS-Designer are in folder 'testData'. In addition, folder tempoutput contains intermediate files output by TDFPS-Designer(txt file about DTW distance matrix).
 ### 2. All datasets about TDFPS-Designer
     In the article(*TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing*), we have introduced all datasets used for evaluating TDFPS-Designer in detail. Users can obtain all the data sets through the following links:
-            ***
+            link：https://pan.baidu.com/s/1kFyXBekwkvAw-RbWlN9C1g?pwd=hycl 
+            password：hycl 
+
         
