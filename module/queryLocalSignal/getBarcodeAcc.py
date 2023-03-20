@@ -172,21 +172,4 @@ def findTrueIndex():
                   ONTkit_12_extracted_barcodeSig/timeSeries_%s.txt'%(i, indexList[i]))
         
 if __name__ == "__main__":
-    # res1 = getBarcodePositonFromAdapter(refSigFile = '../../data/ONTBarcode12/signal_2.txt')
-    # res2 = getBarcodePositonFromTrueSig(refSigFile = '../../data/ONTBarcode12/signal_2.txt', barcodeIndex=1)
-    # print(res1, res2)
-    
-    # main()
-    # main(ONTKit = 12, threadNum = 20)
-    # main(ONTKit = 96, threadNum = 20)
-    # drawFig('../../data/ONTBarcode12ParsedBarcodeSig/timeSeries_6.txt')
-    # getRandom1000SigData()
-    # getAcc(ONTKit = 24)
-    
-    # test = getDistValue()
-    # print(len(test),len(test[1]))
-    # resList = demultiplexingByDistMatrix(test)
-    # print(resList)
-    # print(test)
-   
-    # findTrueIndex()
+   findTrueIndex()
