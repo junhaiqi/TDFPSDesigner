@@ -17,6 +17,7 @@ Our experiments show that TDFPS-Designer can customize barcode kits for users an
         bash Anaconda3-2021.11-Linux-x86 64.sh
     When 'conda' is successfully installed, the user only needs to enter the following commands to deploy the TDFPS_Designer. In order to run TDFPS-Designer, five main packages are required, that is, 'scipy','numpy', 'h5py', 'hdf5' and 'pandas'. For convenience, an environment file('TDFPS_Designer.yaml') is provided so that users can deploy DFPS-Designer directly using conda, the command line is as follows:
         conda env create -f TDFPS_Designer.yaml
+        pip install edlib
 
 ## Usage
 ### 1. Design barcode for muti-sample sequencing
