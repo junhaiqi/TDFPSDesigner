@@ -21,7 +21,8 @@ Our experiments show that TDFPS-Designer can customize barcode kits for users an
 ## Usage
 ### 1. Design barcode for muti-sample sequencing
     We provide two modes to design barcode. One is' k-mer 'mode, and the other is' fasta' mode. When users use the 'k-mer' mode to design barcode, that is, select some sequences with sufficient differences from each other from the entire k-mer space to form a barcode set, and users can use the following commands:
-python selectBarcodeSeq.py -l 10 -q 10000 -o test_kmer_mode.txt -oinfo tempoutput/kmer_log.txt -d 10 -t 8 -m kmer -s 15
+    
+    python selectBarcodeSeq.py -l 10 -q 10000 -o test_kmer_mode.txt -oinfo tempoutput/kmer_log.txt -d 10 -t 8 -m kmer -s 15
 
 
     When the user uses the 'fasta' mode to design barcode, that is, select some sequences from the sequences contained in the fasta file as barcode sequences. The user can use the following command:
