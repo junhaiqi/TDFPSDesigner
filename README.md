@@ -68,7 +68,7 @@ Our experiments show that TDFPS-Designer can customize barcode kits for users an
     ```bash
     python biSelectBaseEditDistance.py --fasta-file test_Fasta_mode.txt --edit-dist 12 --out-file test_again.fasta
     ```
-    The parameter information about 'demultiplexingByNanoporeSinal.py' is as follows:
+    The parameter information about 'biSelectBaseEditDistance.py' is as follows:
     ```bash
         --fasta-file FASTA_FILE
                         It is the fasta file that contains short sequence fragments.
