@@ -152,7 +152,7 @@ We have provided two shell scripts, which give examples of designing barcode and
 ```bash
         bash runSelectBarcodeSeq_exmple.sh
 ```
-    In addition, users can run the following script to complete the demultiplexing of 'testData/testSigSet':
+In addition, users can run the following script to complete the demultiplexing of 'testData/testSigSet':
 
 ```bash
         bash runDemultiplexingByNanoporeSinal_example.sh
