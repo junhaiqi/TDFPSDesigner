@@ -1,11 +1,7 @@
-
 python demultiplexingByNanoporeSinal.py \
-       -iAF testData/testAdapter.fasta\
-       -oASD testData/AdapterSignal\
-       -iBF testData/testBarcode.fasta\
-       -oBSD testData/BarcodeSignal\
-       -iNS testData/testSigSet\
-       -iFL 8 \
-       -oRes testData/testDemultiplexingRes.txt\
-       -t 8\
-       -oMN test\
+       --iAF testData/testAdapter.fasta\
+       --iBF testData/testBarcode.fasta\
+       --iNS testData/testSigSet \
+       --iFL 8 \
+       --oRes test_dem \
+       --thread-num 8\

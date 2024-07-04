@@ -12,87 +12,156 @@ Our experiments show that TDFPS-Designer can customize barcode kits for users an
 ## Packages && deploy
     To run TDFPS-Designer, users must first install 'conda' according to the following two steps:
     1. Download Anaconda3
-        wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2021.11-Linux-x86_64.sh
+
+```bash
+    wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2021.11-Linux-x86_64.sh
+```
     2. Install conda
-        bash Anaconda3-2021.11-Linux-x86 64.sh
+
+```bash
+    bash Anaconda3-2021.11-Linux-x86 64.sh
+```
     When 'conda' is successfully installed, the user only needs to enter the following commands to deploy the TDFPS_Designer. In order to run TDFPS-Designer, five main packages are required, that is, 'scipy','numpy', 'h5py', 'hdf5' and 'pandas'. For convenience, an environment file('TDFPS_Designer.yaml') is provided so that users can deploy DFPS-Designer directly using conda, the command line is as follows:
-        conda env create -f TDFPS_Designer.yaml
-        pip install edlib
+
+```bash
+    conda env create -f TDFPS_Designer.yaml
+    pip install edlib
+    git clone https://github.com/junhaiqi/TDFPSDesigner.git
+    cd TDFPSDesigner/slow5lib
+    python3 -m pip install .
+```
 
 ## Usage
 ### 1. Design barcode for muti-sample sequencing
     We provide two modes to design barcode. One is' k-mer 'mode, and the other is' fasta' mode. When users use the 'k-mer' mode to design barcode, that is, select some sequences with sufficient differences from each other from the entire k-mer space to form a barcode set, and users can use the following commands:
-    
-    python selectBarcodeSeq.py -l 10 -q 10000 -o test_kmer_mode.txt -oinfo tempoutput/kmer_log.txt -d 10 -t 8 -m kmer -s 15
 
+```bash
+    python selectBarcodeSeq.py --length 10 \
+        --qsize 10000 \
+        --outdir test_select_kmer \
+        --threshold 10 \
+        --thread-num 8 \
+        --mode kmer \
+        --seed 15 \
+        --training-precison-cutoff 0.95 \
+        --kit dna-r10-min
+```
 
     When the user uses the 'fasta' mode to design barcode, that is, select some sequences from the sequences contained in the fasta file as barcode sequences. The user can use the following command:
-        ```bash
-        python selectBarcodeSeq.py -l 10 -q 10000 -o test_Fasta_mode.txt -oinfo tempoutput/fasta_log.txt -d 10 -t 8 -f 10mer_filter_results.fasta -m fasta
-        ```
+
+```bash
+    python selectBarcodeSeq.py --length 10 \
+    --qsize 10000 \
+    --outdir test_select_fasta \
+    --threshold 10 \
+    --thread-num 8 \
+    --mode fasta \
+    --fasta test_select_kmer/first_selected_barcodes.fa \
+    --seed 15 \
+    --training-precison-cutoff 0.95 \
+    --kit dna-r10-min
+```
 
     The parameter information about 'selectBarcodeSeq.py' is as follows:
-        ```bash
-        -l Specify the length of the designed barcode.
-        -q Specify the size of the initially selected sequence space, which is recommended to be more than 100000.
-        -o Specify the output file, which contains the final barcode sequences.
-        -s Specify a random seed to determine the initially selected barcode signal,  have a slight impact on the size of the final barcode set.
-        -oinfo Specify an output file to record output information.
-        -d Specify a value to control the threshold of the TDFPS algorithm, the recommended value is 0~30.
-        -t Specify the number of threads.
-        -m Specify the selected mode. If the mode is "fasta", then -f must be followed by a file of 'fasta' type.
-        -f Specify a file(format: fasta). The sequences contained in this file must be of the same length. When the '-m' is followed by 'fasta', this parameter must be used. In other cases, it has no effect.
-        ```
+
+```bash
+  -h, --help            show this help message and exit
+  --length LENGTH       Specify the length of the designed barcode.
+  --qsize QSIZE         Specify the size of the initially selected sequence space, which is recommended to be more than 100000.
+  --outdir OUTDIR       Specify the output file, which contains the final barcode sequences.
+  --seed SEED           Specify a random seed to determine the initially selected barcode signal, have a slight impact on the size of the final barcode set.
+  --threshold THRESHOLD
+                        Specify a value to control the threshold of the TDFPS algorithm, the recommended value is 0~30.
+  --thread-num THREAD_NUM
+                        Specify the number of threads.
+  --mode {kmer,fasta}   Specify the selected mode. If the mode is "fasta", then -f must be followed by a file of "fasta" type.
+  --fasta FASTA         Specify a file(format: fasta). The sequences contained in this file must be of the same length. When the "--mode" is followed by "fasta", this parameter must be used. In other cases, it
+                        has no effect.
+  --kit {dna-r9-min,dna-r9-prom,dna-r10-min,dna-r10-prom}
+                        Specify ONT sequencing kit.
+  --adapter-seq ADAPTER_SEQ
+                        Specify ONT adapter sequence for select barcodes again.
+  --top-flank-seq TOP_FLANK_SEQ
+                        Specify ONT top flanking sequence for select barcodes again.
+  --bottom-flank-seq BOTTOM_FLANK_SEQ
+                        Specify ONT bottom flanking sequence for select barcodes again.
+  --training-num-each-barcode TRAINING_NUM_EACH_BARCODE
+                        Specify the training number for select barcodes again.
+  --training-precison-cutoff TRAINING_PRECISON_CUTOFF
+                        Specify training precison cutoff for select barcodes again.
+  --training-recall-cutoff TRAINING_RECALL_CUTOFF
+                        Specify training recall cutoff for select barcodes again.
+  --training-f1Score-cutoff TRAINING_F1SCORE_CUTOFF
+                        Specify training F1-Score cutoff for select barcodes again.
+  --bio-criteria        Based on biological criteria, sequences with a GC content lower than 0.4 or greater than 0.6, sequences containing reapte triples, sequences containing GGC, and self-complementary
+                        sequences were filtered out.
+
+```
 
 ### 2. Demultiplexing based on TDFPS-Designer
     Given a folder containing nanopore signals, barcode sequence, adpter sequence, and the length of the flanking sequence in barcode sequence, TDFPS-Designer can complete the whole process of demultiplexing. The following is a specific command line:
-        ```bash
-        python demultiplexingByNanoporeSinal.py -iAF testData/testAdapter.fasta -oASD testData/AdapterSignal -iBF testData/testBarcode.fasta -oBSD testData/BarcodeSignal -iNS testData/testSigSet -iFL 8 -oRes testData/testDemultiplexingRes.txt -t 8 -oMN test
-        ```
+
+```bash
+    python demultiplexingByNanoporeSinal.py \
+    --iAF testData/testAdapter.fasta\
+    --iBF testData/testBarcode.fasta\
+    --iNS testData/testSigSet \
+    --iFL 8 \
+    --oRes test_dem \
+    --thread-num 8 \
+```
     The parameter information about 'demultiplexingByNanoporeSinal.py' is as follows:
-        ```bash
-        -iAF Specify a input fasta file, which contains a adpter sequence.
-        -oASD Specify an output folder to load adapter signals.
-        -iBF Specify an input fasta file, which contains barcode sequences.
-        -oBSD Specify an output folder to load Noiseless barcode signals.
-        -iNS Specify an input folder, which contains nanopore signals to be demultiplexed.
-        -oRes Specifies an output file, which contains the results of the demultiplexing.
-        -iFL Specify the length of the flanking sequence in the barcode sequence. It needs to be specified when the length of the top flanking sequence is the same as the length of the tail flanking sequence for better detection of barcode fragment in nanopore signal.
-        -t Specifies the number of threads, which affects the speed of extracting barcde signals.
-        -oMN Specifies the prefix name of an output file, which contains a DTW distance matrix.
-        ```
+
+ ```bash
+  -h, --help            show this help message and exit
+  --iAF IAF             Specify a input fasta file, which contains a adpter sequence.
+  --iBF IBF             Specify an input fasta file, which contains barcode sequences with flanking sequence.
+  --iNS INS             Specify an input folder, which contains nanopore signals (.txt) to be demultiplexed.
+  --oRes ORES           Specifies an output folder, which contains the results of the demultiplexing.
+  --iFL IFL             Specify the length of the flanking sequence in the barcode sequence. It needs to be specified when the length of the top flanking sequence is the same as the length of the tail flanking
+                        sequence for better detection of barcode fragment in nanopore signal.
+  --kit {dna-r9-min,dna-r9-prom,dna-r10-min,dna-r10-prom}
+                        Specify ONT sequencing kit.
+  --thread-num THREAD_NUM
+                        Specifies the number of threads, which affects the speed of extracting barcde signals.
+```
 
 ### 3. Secondary selection of barcodes based on edit distance
     If necessary, we can filter barcodes again based on edit distance.
     The following is a specific command line:
-    ```bash
+    
+```bash
     python biSelectBaseEditDistance.py --fasta-file test_Fasta_mode.txt --edit-dist 12 --out-file test_again.fasta
-    ```
+```
+    
     The parameter information about 'biSelectBaseEditDistance.py' is as follows:
-    ```bash
-        --fasta-file FASTA_FILE
-                        It is the fasta file that contains short sequence fragments.
-        --edit-dist EDIT_DIST
-                                It is an edit distance threshold.
-        --out-file OUT_FILE   It is a fasta file to store the selected barcode sequence.
-        --thread-num THREAD_NUM
-                                It is the number of threads used to execute the task.
-    ```
 
-
+```bash
+    --fasta-file FASTA_FILE
+                    It is the fasta file that contains short sequence fragments.
+    --edit-dist EDIT_DIST
+                            It is an edit distance threshold.
+    --out-file OUT_FILE   It is a fasta file to store the selected barcode sequence.
+    --thread-num THREAD_NUM
+                            It is the number of threads used to execute the task.
+```
 
 ## Example of running TDFPS-Designer
     We have provided two shell scripts, which give examples of designing barcode and demultiplexing based on TDFPS-Designer. The user can run the following script to select barcode in the 10-mer sequence space and select barcode based on '10mer_filter_results.fasta':
-    ```bash
+
+```bash
         bash runSelectBarcodeSeq_exmple.sh
-    ```
+```
     In addition, users can run the following script to complete the demultiplexing of 'testData/testSigSet':
-    ```bash
+
+```bash
         bash runDemultiplexingByNanoporeSinal_example.sh
-    ```
+```
+
 ## Test Data
 ### 1. Data for testing TDFPS-Designer
     All the data used to test the TDFPS-Designer and output files of the TDFPS-Designer are in folder 'testData'. In addition, folder tempoutput contains intermediate files output by TDFPS-Designer(txt file about DTW distance matrix).
+
 ### 2. All datasets about TDFPS-Designer
     In the article(*TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing*), we have introduced all datasets used for evaluating TDFPS-Designer in detail. Users can obtain all the data sets through the following links:
             link：https://pan.baidu.com/s/1kFyXBekwkvAw-RbWlN9C1g?pwd=hycl 

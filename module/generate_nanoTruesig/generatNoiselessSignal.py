@@ -1,6 +1,6 @@
 import sys
 import os
-
+from multiprocessing import Pool
 if 'module' not in sys.path:
     sys.path.append('module')
 
@@ -105,6 +105,29 @@ def get_parameters():
     args = parser.parse_args()
     
     return args
+
+def simple_sim(seq, out_dir, sigroot):
+    sequence_to_true_signal(seq, output_folder=out_dir, sigroot=sigroot)
+
+def generate_true_sigs(fa_file, out_dir, thread_num = 8):
+    seq_list = get_seq_list(fa_file)
+    id_list = get_id_list(fa_file)
+    zip_id_seq = list(zip(seq_list, id_list))
+    isExists_out = os.path.exists(out_dir)
+    if not isExists_out:
+        os.makedirs(out_dir)
+    
+    args1 = zip_id_seq
+    args2 = [out_dir for i in range(len(zip_id_seq))]
+    args3 = ['timeSeries' for i in range(len(zip_id_seq))]
+    args = [ (args1[i], args2[i], args3[i]) for i in range(len(zip_id_seq))]
+    pool = Pool(thread_num)
+    pool.starmap(simple_sim, args)
+    pool.close()
+    pool.join()
+    # end_time = time()
+    # for seq in zip_id_seq:
+    #     sequence_to_true_signal(seq, output_folder=out_dir, sigroot='timeSeries')
 
 def main():
     print('script name: %s'%sys.argv[0])

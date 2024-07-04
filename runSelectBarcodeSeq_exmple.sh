@@ -1,19 +1,22 @@
 # Select barcodes from the entire k-mer space:
-python selectBarcodeSeq.py -l 10 \
-        -q 10000 \
-        -o test_kmer_mode.txt \
-        -oinfo tempoutput/kmer_log.txt \
-        -d 10 \
-        -t 8 \
-        -m kmer \
-        -s 15
+python selectBarcodeSeq.py --length 10 \
+        --qsize 10000 \
+        --outdir test_select_kmer \
+        --threshold 10 \
+        --thread-num 8 \
+        --mode kmer \
+        --seed 15 \
+        --training-precison-cutoff 0.95 \
+        --kit dna-r10-min
 
 # Select barcodes from the given fasta file containing DNA sequences:
-python selectBarcodeSeq.py -l 10 \
-        -q 10000 \
-        -o test_Fasta_mode.txt \
-        -oinfo tempoutput/fasta_log.txt \
-        -d 10 \
-        -t 8 \
-        -f 10mer_filter_results.fasta \
-        -m fasta
+python selectBarcodeSeq.py --length 10 \
+        --qsize 10000 \
+        --outdir test_select_fasta \
+        --threshold 10 \
+        --thread-num 8 \
+        --mode fasta \
+        --fasta test_select_kmer/first_selected_barcodes.fa \
+        --seed 15 \
+        --training-precison-cutoff 0.95 \
+        --kit dna-r10-min
