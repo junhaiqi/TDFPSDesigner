@@ -33,7 +33,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
 
 ## Usage
 ### 1. Design barcode for muti-sample sequencing
-    We provide two modes to design barcode. One is' k-mer 'mode, and the other is' fasta' mode. When users use the 'k-mer' mode to design barcode, that is, select some sequences with sufficient differences from each other from the entire k-mer space to form a barcode set, and users can use the following commands:
+We provide two modes to design barcode. One is' k-mer 'mode, and the other is' fasta' mode. When users use the 'k-mer' mode to design barcode, that is, select some sequences with sufficient differences from each other from the entire k-mer space to form a barcode set, and users can use the following commands:
 
 ```bash
     python selectBarcodeSeq.py --length 10 \
@@ -47,7 +47,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
         --kit dna-r10-min
 ```
 
-    When the user uses the 'fasta' mode to design barcode, that is, select some sequences from the sequences contained in the fasta file as barcode sequences. The user can use the following command:
+When the user uses the 'fasta' mode to design barcode, that is, select some sequences from the sequences contained in the fasta file as barcode sequences. The user can use the following command:
 
 ```bash
     python selectBarcodeSeq.py --length 10 \
@@ -62,7 +62,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
     --kit dna-r10-min
 ```
 
-    The parameter information about 'selectBarcodeSeq.py' is as follows:
+The parameter information about 'selectBarcodeSeq.py' is as follows:
 
 ```bash
   -h, --help            show this help message and exit
@@ -99,7 +99,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
 ```
 
 ### 2. Demultiplexing based on TDFPS-Designer
-    Given a folder containing nanopore signals, barcode sequence, adpter sequence, and the length of the flanking sequence in barcode sequence, TDFPS-Designer can complete the whole process of demultiplexing. The following is a specific command line:
+Given a folder containing nanopore signals, barcode sequence, adpter sequence, and the length of the flanking sequence in barcode sequence, TDFPS-Designer can complete the whole process of demultiplexing. The following is a specific command line:
 
 ```bash
     python demultiplexingByNanoporeSinal.py \
@@ -110,7 +110,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
     --oRes test_dem \
     --thread-num 8 \
 ```
-    The parameter information about 'demultiplexingByNanoporeSinal.py' is as follows:
+The parameter information about 'demultiplexingByNanoporeSinal.py' is as follows:
 
  ```bash
   -h, --help            show this help message and exit
@@ -127,14 +127,14 @@ When 'conda' is successfully installed, the user only needs to enter the followi
 ```
 
 ### 3. Secondary selection of barcodes based on edit distance
-    If necessary, we can filter barcodes again based on edit distance.
-    The following is a specific command line:
+If necessary, we can filter barcodes again based on edit distance.
+The following is a specific command line:
     
 ```bash
     python biSelectBaseEditDistance.py --fasta-file test_Fasta_mode.txt --edit-dist 12 --out-file test_again.fasta
 ```
     
-    The parameter information about 'biSelectBaseEditDistance.py' is as follows:
+The parameter information about 'biSelectBaseEditDistance.py' is as follows:
 
 ```bash
     --fasta-file FASTA_FILE
@@ -147,7 +147,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
 ```
 
 ## Example of running TDFPS-Designer
-    We have provided two shell scripts, which give examples of designing barcode and demultiplexing based on TDFPS-Designer. The user can run the following script to select barcode in the 10-mer sequence space and select barcode based on '10mer_filter_results.fasta':
+We have provided two shell scripts, which give examples of designing barcode and demultiplexing based on TDFPS-Designer. The user can run the following script to select barcode in the 10-mer sequence space and select barcode based on '10mer_filter_results.fasta':
 
 ```bash
         bash runSelectBarcodeSeq_exmple.sh
@@ -160,11 +160,11 @@ When 'conda' is successfully installed, the user only needs to enter the followi
 
 ## Test Data
 ### 1. Data for testing TDFPS-Designer
-    All the data used to test the TDFPS-Designer and output files of the TDFPS-Designer are in folder 'testData'. In addition, folder tempoutput contains intermediate files output by TDFPS-Designer(txt file about DTW distance matrix).
+All the data used to test the TDFPS-Designer and output files of the TDFPS-Designer are in folder 'testData'. In addition, folder tempoutput contains intermediate files output by TDFPS-Designer(txt file about DTW distance matrix).
 
 ### 2. All datasets about TDFPS-Designer
-    In the article(*TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing*), we have introduced all datasets used for evaluating TDFPS-Designer in detail. Users can obtain all the data sets through the following links:
-            link：https://pan.baidu.com/s/1kFyXBekwkvAw-RbWlN9C1g?pwd=hycl 
-            password：hycl 
+In the article(*TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing*), we have introduced all datasets used for evaluating TDFPS-Designer in detail. Users can obtain all the data sets through the following links:
+    link：https://pan.baidu.com/s/1kFyXBekwkvAw-RbWlN9C1g?pwd=hycl 
+    password：hycl 
 
         
