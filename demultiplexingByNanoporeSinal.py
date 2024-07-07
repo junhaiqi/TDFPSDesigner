@@ -96,9 +96,9 @@ def squigulatorAPI(fastaFile, kit, outDir, sigRoot = 'timeSeries', fast5 = True)
     simBySquigulator(fasta = fastaFile,
             outFile = fast5Path,
             mode = kit,
-            ideal = False,
-            ideal_amp = False,
-            ideal_time = False,
+            ideal = True,
+            ideal_amp = True,
+            ideal_time = True,
             fast5 = fast5)
     f2t(fast5Filepath = fast5Path, outSigsDir = outDir, sigRoot = sigRoot)
 
