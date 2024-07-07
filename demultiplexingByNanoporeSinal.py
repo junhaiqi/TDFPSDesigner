@@ -90,7 +90,7 @@ def f2t(fast5Filepath, outSigsDir, sigRoot = 'timeSeries'):  # This can be a sin
             raw_data = list(raw_data)
             sig2text(raw_data, sigFile)
 
-def squigulatorAPI(fastaFile, kit, outDir, sigRoot = 'timeSeries'):
+def squigulatorAPI(fastaFile, kit, outDir, sigRoot = 'timeSeries', fast5 = True):
     prefixName = fastaFile.split('/')[-1].split('.')[0]
     fast5Path = f'tempoutput/{prefixName}.fast5'
     simBySquigulator(fasta = fastaFile,
@@ -98,7 +98,8 @@ def squigulatorAPI(fastaFile, kit, outDir, sigRoot = 'timeSeries'):
             mode = kit,
             ideal = False,
             ideal_amp = False,
-            ideal_time = False)
+            ideal_time = False,
+            fast5 = fast5)
     f2t(fast5Filepath = fast5Path, outSigsDir = outDir, sigRoot = sigRoot)
 
 def generateAdapterSignal(AdapterFastaFile='test.fasta', outSignalDir='AdapterSignal', kit = 'dna-r9-min', threadNum=2):
@@ -116,7 +117,7 @@ def generateAdapterSignal(AdapterFastaFile='test.fasta', outSignalDir='AdapterSi
             seqTupleList=seqTupleList,
             output_folder=outSignalDir, sigroot='timeSeries', threadNum=2)
     else:
-        squigulatorAPI(fastaFile = AdapterFastaFile, kit = kit, outDir = outSignalDir)
+        squigulatorAPI(fastaFile = AdapterFastaFile, kit = kit, outDir = outSignalDir, fast5 = True)
     
     return SeqLength
     
