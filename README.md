@@ -26,6 +26,7 @@ When 'conda' is successfully installed, the user only needs to enter the followi
 ```bash
     conda env create -f TDFPS_Designer.yaml
     pip install edlib
+    pip install ont-fast5-api
     git clone https://github.com/junhaiqi/TDFPSDesigner.git
     cd TDFPSDesigner/slow5lib
     python3 -m pip install .
