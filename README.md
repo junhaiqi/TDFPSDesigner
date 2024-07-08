@@ -148,7 +148,7 @@ The parameter information about 'biSelectBaseEditDistance.py' is as follows:
 ```
 
 ## Example of running TDFPS-Designer
-We have provided two shell scripts, which give examples of designing barcode and demultiplexing based on TDFPS-Designer. The user can run the following script to select barcode in the 10-mer sequence space and select barcode based on '10mer_filter_results.fasta':
+We have provided two shell scripts, which give examples of designing barcode and demultiplexing based on TDFPS-Designer. The user can run the following script to select barcode in the 10-mer sequence space and select barcode based on 'test_select_kmer/first_selected_barcodes.fa':
 
 ```bash
         bash runSelectBarcodeSeq_exmple.sh
