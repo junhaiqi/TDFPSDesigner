@@ -148,6 +148,21 @@ The parameter information about 'biSelectBaseEditDistance.py' is as follows:
                             It is the number of threads used to execute the task.
 ```
 
+## Transformation of POD5/Fast5
+ONT currently provides two signal file formats, POD5 and Fast5. The input of our algorithm is a signal folder, which contains txt files containing signal data. We provide a simple script (processFast5Pod5.py) to convert the signal data in POD5/Fast5 into a folder to support users to use our tool to demultiplex.
+
+If you have a folder (example: pod5_test) containing files in pod5 format, you can convert the signal data to 'out_pod5_test' using the following command:
+
+```bash
+        python processFast5Pod5.py POD5 pod5_test out_pod5_test
+```
+
+If you have a folder containing files in fast5 format (example: fast5_test), you can convert the signal data to 'out_fast5_test' using the following command:
+
+```bash
+        python processFast5Pod5.py Fast5 fast5_test out_fast5_test
+```
+
 ## Example of running TDFPS-Designer
 We have provided two shell scripts, which give examples of designing barcode and demultiplexing based on TDFPS-Designer. The user can run the following script to select barcode in the 10-mer sequence space and select barcode based on 'test_select_kmer/first_selected_barcodes.fa':
 
