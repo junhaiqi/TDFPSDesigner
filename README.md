@@ -187,4 +187,9 @@ In the manuscript (*TDFPS-Designer: an efficient toolkit for barcode design and 
 ## Designed barcode kits
 In the manuscript (*TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing*), we finally designed 137 (20bp), 410 (24bp) and 1779 (30bp) barcodes (barcode_kits/\*_selected.fa). These barcodes are derived from an already designed initial kit (barcode_kits/\*_barcodes.fa). The barcodes in the initial kit ensure the difference in signal (DTW distance describes the difference). The command line for the final kit generation is in "barcode_kits/ex_cmd.sh". It should be noted that the generation of the initial kit and the final kit is automated, and the results generated each time are slightly different because the generation of simulated signals and the initial design of the barcode involve random operations.
 
+## Cite
+Qi, J., Li, Z., Zhang, Yz. et al. TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing. Genome Biol 25, 285 (2024). https://doi.org/10.1186/s13059-024-03423-3
+
+
+
         
