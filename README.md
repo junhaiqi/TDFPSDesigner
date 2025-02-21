@@ -1,7 +1,7 @@
 # TDFPS-Designer: an efficient toolkit for barcode design and selection in nanopore sequencing
 
 ## Overview
-TDFPS-Designer can be used on the linux system, the main functions as follows:
+TDFPS-Designer can be used on the linux system with GPU for CUDA, the main functions as follows:
 
 1. Select some sequences from the whole k-mer space or given sequence space as barcodes. The DTW distance between the nanopore signals corresponding to these barcode sequences is greater than a certain threshold.
 
@@ -32,6 +32,13 @@ When 'conda' is successfully installed, the user only needs to enter the followi
     cd TDFPSDesigner/slow5lib
     python3 -m pip install .
 ```
+
+If necessary, you can recompile the CUDA program:
+
+```bash
+    bash compile.sh
+```
+
 
 ## Usage
 ### 1. Design barcode for muti-sample sequencing
